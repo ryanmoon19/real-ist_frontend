@@ -2,11 +2,12 @@ import './App.css';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Create from './components/Create';
-
+import Update from './components/Update';
 
 function App() {
   const [homes, setHomes] = useState([])
   let [newListing, setNewListing] = useState([])
+  const [updated, setUpdated] = useState(false);
 
   const getHomes = () => {
     axios.get('http://localhost:8000/homes')
@@ -31,9 +32,27 @@ function App() {
     })
   };
 
+  //Update
+  const handleUpdate = (editHome) => {
+    axios
+            .put(`http://localhost:8000/homes/${editHome.id}`, 
+              editHome
+            )
+            .then((response) => {
+              getHomes();
+        })
+        .catch((error) => {
+        console.error(error);
+        });
+  }
+
   useEffect(()=>{
     getHomes()
   }, [])
+
+  useEffect(() => {
+    getHomes();
+}, [updated]);
 
   return (
     <div className="App">
@@ -53,6 +72,7 @@ function App() {
               <img src={home.image}/>
               <p>{home.description}</p>
               <button onClick={handleDelete} value={home.id}>DELETE</button>
+              <Update handleUpdate={handleUpdate} home={home}/>
             </div>
           )
         })}

@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Real-ist</h1>
+      <h1 className='text-3xl font-bold underline'>Real-ist</h1>
       < Create handleCreate={handleCreate} />
       <div className="Home">
         {homes.map((home)=> {

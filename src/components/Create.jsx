@@ -36,7 +36,7 @@ const Create = (props) => {
 
     const handleSubmit=(event) => {
         event.preventDefault()
-        handleCreate(listing)
+        props.handleCreate(listing)
     };
 
 

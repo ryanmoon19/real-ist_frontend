@@ -10,12 +10,12 @@ const NavBar = () => {
             </Link>
             </div>
 
-            <div class="flex-grow flex items-center w-auto">
+            <div className="flex-grow flex items-center w-auto">
                 <div class="text-sm flex flex-grow">
-                <Link to="/homes" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6">
+                <Link to="/homes" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6">
                     Buy
                 </Link>
-                <Link to="/sell" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6">
+                <Link to="/sell" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-6">
                     Sell
                 </Link>
                 </div>

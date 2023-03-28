@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 //question about the image portion
 const Create = (props) => {
     let emptyListing = {
@@ -21,9 +22,18 @@ const Create = (props) => {
         setListing({...listing, [event.target.name]: event.target.value})
     }
 
+    //create
+    const handleCreate = (newListing) => {
+        axios
+        .post('http://localhost:8000/homes', newListing)
+        .then((response) => {
+            getHomes();
+        });
+    }
+
     const handleSubmit=(event) => {
         event.preventDefault()
-        props.handleCreate(listing)
+        handleCreate(listing)
     };
 
 

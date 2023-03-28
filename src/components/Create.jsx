@@ -17,17 +17,20 @@ const Create = (props) => {
     }
 
     const [listing, setListing] = useState(emptyListing)
+    const [homes, setHomes] = useState([])
+
+
 
     const handleChange = (event) => {
         setListing({...listing, [event.target.name]: event.target.value})
     }
 
-    //create
+
     const handleCreate = (newListing) => {
         axios
         .post('http://localhost:8000/homes', newListing)
         .then((response) => {
-            getHomes();
+            console.log(response);
         });
     }
 
@@ -85,7 +88,7 @@ const Create = (props) => {
             <input type="text" name="image" onChange={handleChange} />
             <br/>
             <br/>
-            <input type="submit" onChange={handleChange}/>
+            <input type="submit" onChange={handleChange} value="Add Home"/>
         </form>
     </>
       );

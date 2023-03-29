@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import {redirect} from 'react-router-dom'
 //question about the image portion
 const Create = (props) => {
     let emptyListing = {
@@ -34,9 +35,10 @@ const Create = (props) => {
         });
     }
 
-    const handleSubmit=(event) => {
+    const handleSubmit= async(event) => {
         event.preventDefault()
-        props.handleCreate(listing)
+        await handleCreate(listing)
+        redirect('/')
     };
 
 

@@ -84,7 +84,9 @@ const Home = () =>{
                     <p>Bedroom: {home.bedroom} Bath: {home.bathroom}</p>
                     <p>Size: {home.squareFeet} sqft</p> */}
                         <div>
-                        <Link to={`/oneHome/${home.id}`} onClick={() => getOneHome(home.id)}><img style={{width: "330px", height:"240px"}} src={home.image}/></Link>
+                            <Link to={`/oneHome/${home.id}`} onClick={() => getOneHome(home.id)}>
+                                <img className='ml-auto mr-auto' style={{width: "330px", height:"240px"}} src={home.image}/>
+                            </Link>
                         </div>
                     {/* <p>{home.description}</p>
                     <button onClick={handleDelete} value={home.id}>DELETE</button>

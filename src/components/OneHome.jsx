@@ -9,6 +9,8 @@ import {GoogleMap, useLoadScript, MarkerF} from '@react-google-maps/api'
 
 const OneHome = () => {
     const [home, setHome] = useState({});
+    const [lat, setLat] = useState();
+    const [lng, setLng] = useState();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -29,6 +31,8 @@ const OneHome = () => {
         .then((response)=>{
             console.log(response);
             const {lat, lng} = response.results[0].geometry.location
+            setLat(lat)
+            setLng(lng)
             console.log(lat, lng);
         },
         (error)=>{
@@ -58,9 +62,9 @@ const OneHome = () => {
     }, [id]);
 
     //google map
-        const center = {lat:44, lng: -80}
+        const center = {lat:lat, lng: lng}
         const Map = () =>{
-            return <GoogleMap zoom={10} center={center} mapContainerClassName="w-full h-80 mt-10">
+            return <GoogleMap zoom={15} center={center} mapContainerClassName="w-full h-80 mt-10">
                 <MarkerF position={center}/>
             </GoogleMap>
         }

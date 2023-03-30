@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import {redirect} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 //question about the image portion
 const Create = (props) => {
     let emptyListing = {
@@ -20,6 +20,7 @@ const Create = (props) => {
     const [listing, setListing] = useState(emptyListing)
     const [homes, setHomes] = useState([])
 
+    const navigate = useNavigate();
 
 
     const handleChange = (event) => {
@@ -38,7 +39,7 @@ const Create = (props) => {
     const handleSubmit= async(event) => {
         event.preventDefault()
         await handleCreate(listing)
-        redirect('/')
+        navigate('/')
     };
 
 

@@ -11,21 +11,25 @@ const Update = (props) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
 
-    const handleSubmit = (event) => {
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     props.handleChange(formData)
+    // };
+    const handleSubmit= async(event) => {
         event.preventDefault()
-        props.handleUpdate(formData)
+        await handleChange(formData)
     };
 
-    useEffect(() => {
-        axios
-        .get(`http://localhost:8000/homes/${id}`)
-        .then((response) => {
-            setHome(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //     .get(`http://localhost:8000/homes/${id}`)
+    //     .then((response) => {
+    //         setHome(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     });
+    // }, []);
 
     return (
         <div className='mt-4 mx-auto w-8/12 py-8 px-6 shadow-xl rounded-lg sm:px-10 '>

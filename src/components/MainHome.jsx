@@ -7,13 +7,16 @@ const MainHome = () => {
     const [homes, setHomes]= useState([]);
     const [search, setSearch]= useState("")
     const [searchField, setSearchField] = useState("")
+    const [checkSearch, setcheckSearch] = useState(false)
 
     const handleChange = (event) => {
         setSearchField(event.target.value)
     }
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             setSearch(searchField)
+            setcheckSearch(true)
         }
     }
 
@@ -41,12 +44,12 @@ const MainHome = () => {
     return(
         <>
             <div className= "flex flex-col items-center justify-center w-screen h-96 bg-[url('https://www.livebuyers.com/wp-content/uploads/2020/02/Los-Angeles-CA.jpg')] bg-cover bg-no-repeat bg-center bg-fixed">
-                <p className="sm:text-[70px] text-[50px] text-white my-0 mx-auto">Let us take you home.</p>
+                <p className="sm:text-[70px] text-[50px] text-white my-0 mx-auto text-center">Let us take you home.</p>
                 <input className="my-0 text-black border border-gray-400 rounded-md w-96 px-4 py-3 mt-4"type="text" placeholder="Search a City, ZIP Code, or State" onChange={handleChange} onKeyDown={handleKeyDown}/>
             </div>
             <div className="mt-10">
                 <h3 className="text-[25px] text-center">Homes For You</h3>
-                <p className="text-[15px] text-center">Current Location Placeholder</p>
+                {checkSearch ? <p className="text-[15px] text-center">Search results: {search}</p> : <></>}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-5 mx-auto max-w-[1700px]">
                 {homes.filter((home)=> {
@@ -79,6 +82,3 @@ const MainHome = () => {
 }
 
 export default MainHome
-
-//<img style={{width: "330px", height:"240px"}} src={home.image} alt={home.description}/>
-//

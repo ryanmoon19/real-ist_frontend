@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Update = (props) => {
-
+    const [home, setHome] = useState({});
     const [formData, setFormData] = useState({...props.home}); 
+    const { id } = useParams();
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
@@ -13,56 +16,68 @@ const Update = (props) => {
         props.handleUpdate(formData)
     };
 
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8000/homes/${id}`)
+        .then((response) => {
+            setHome(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="houseNum">House Number: </label>
-            <input type="text" name="houseNum" value={formData.houseNum} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="street">Street: </label>
-            <input type="text" name="street" value={formData.street} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="city">City:</label>
-            <input type="text" name="city" value={formData.city} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="state">State:</label>
-            <input type="text" name="state" value={formData.state} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="zip">Zip:</label>
-            <input type="number" name="zip" value={formData.zip} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="price">Price:</label>
-            <input type="number" name="price" value={formData.price} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="bedroom"># of Bedrooms:</label>
-            <input type="number" name="bedroom" value={formData.bedroom} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="bathroom"># of Bathrooms:</label>
-            <input type="number" name="bathroom" value={formData.bathroom} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="description">Description:</label>
-            <input type="text" name="description" value={formData.description} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="squareFeet">Square Feet:</label>
-            <input type="number" name="squareFeet" value={formData.squareFeet} onChange={handleChange} />
-            <br />
-            <br />
-            <label htmlFor="image">Image:</label>
-            <input type="text" name="image" value={formData.image} onChange={handleChange} />
-            <br />
-            <br />
-            <input type="submit" value="Update" />
-        </form>
-        </>
+        <div className='mt-4 mx-auto w-8/12 py-8 px-6 shadow-xl rounded-lg sm:px-10 '>
+            <img className='ml-auto mr-auto w-full h-80' src={home.image}/>
+            <form className="bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10" onSubmit={handleSubmit}>
+                <label className='block text-xl font-medium text-gray-700' htmlFor="houseNum">House Number: </label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="houseNum" value={formData.houseNum} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="street">Street: </label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="street" value={formData.street} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="city">City:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="city" value={formData.city} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="state">State:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="state" value={formData.state} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="zip">Zip:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="number" name="zip" value={formData.zip} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="price">Price:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="number" name="price" value={formData.price} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="bedroom"># of Bedrooms:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="number" name="bedroom" value={formData.bedroom} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="bathroom"># of Bathrooms:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="number" name="bathroom" value={formData.bathroom} onChange={handleChange} />
+                <br />
+                <br />
+                <label htmlFor="description">Description:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="description" value={formData.description} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="squareFeet">Square Feet:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="number" name="squareFeet" value={formData.squareFeet} onChange={handleChange} />
+                <br />
+                <br />
+                <label className='block text-xl font-medium text-gray-700' htmlFor="image">Image:</label>
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="image" value={formData.image} onChange={handleChange} />
+                <br />
+                <br />
+                <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-300' type="submit" value="Update" />
+            </form>
+        </div>
     )
 }
 

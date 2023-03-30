@@ -6,6 +6,7 @@ import Home from './components/Home';
 import MainHome from './components/MainHome';
 import OneHome from './components/OneHome';
 
+
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<MainHome/>}/>
         <Route path='/homes' element={<Home/>}/>
         <Route path='/sell' element={<Create/>}/>
+        <Route path='/update' element={<Update/>}/>
         <Route exact path='/oneHome/:id' element={<OneHome/>}/>
     </Routes>
     </div>

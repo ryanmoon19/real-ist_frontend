@@ -11,7 +11,7 @@ const NavBar = () => {
             </div>
 
             <div className="flex-grow flex items-center w-auto">
-                <div class="text-sm content-center flex flex-grow ">
+                <div class="text-sm content-center flex flex-grow mb-3">
                 <Link to="/homes" className="block mt-4 inline-block mt-0 text-teal-200 hover:text-white mr-6 text-[20px] md:ml-9">
                     Buy
                 </Link>
@@ -20,7 +20,7 @@ const NavBar = () => {
                 </Link>
                 </div>
             </div>
-            <div className="flex-grow flex justify-center w-auto mt-1 md:mt-0 xl:flex-end xl:ml-[300px]">
+            <div className="flex-grow flex justify-center w-auto mt-1 md:mt-0 xl:flex-end xl:ml-[300px] mb-3">
                 <div className="flex">
                     <button className="inline-block text-[15px] md:text-[18px] px-6 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-3 mt-0 ">Log In</button>
                     <button className="inline-block text-[15px] md:text-[18px] px-6 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-3 mt-0 ml-3">Sign Up</button>

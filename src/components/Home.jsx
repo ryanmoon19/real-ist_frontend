@@ -7,66 +7,63 @@ import Create from './Create';
 
 
 const Home = () =>{
-    const [homes, setHomes] = useState([])
-    let [newListing, setNewListing] = useState([])
+    const [homes, setHomes] = useState([]);
+    const [apiHomes, setApiHomes] = useState([]);
+    let [newListing, setNewListing] = useState([]);
     const [updated, setUpdated] = useState(false);
 
     const {id} =useParams()
     
-        const getHomes = () => {
-        axios.get('http://localhost:8000/homes/all')
-        .then((response) => setHomes(response.data), 
-        (err) => console.log(err))
-        .catch((error) => console.log(error))
-        }
-
-        const getOneHome = (id) => {
-            return axios.get(`http://localhost:8000/homes/${id}`)
-                .then((response)=>{
-                    return response.data
-                })
-                .catch((error)=>{
-                    console.log(error);
-                })
-        }
-    
-        //create
-        const handleCreate = (newListing) => {
-        axios
-        .post('http://localhost:8000/homes', newListing)
-        .then((response) => {
-            getHomes();
-        });
+    const getHomes = () => {
+    axios.get('http://localhost:8000/homes/all')
+    .then((response) => {
+        console.log(response.data);
+        setHomes(response.data)
+    }, 
+    (err) => console.log(err))
+    .catch((error) => console.log(error))
     }
-        //Delete
-        const handleDelete = (event) => {
-        axios.delete(`http://localhost:8000/homes/${event.target.value}`)
-        .then((response) =>{
-            getHomes()
-        })
-        };
-    
-        //Update
-        const handleUpdate = (editHome) => {
-        axios
-                .put(`http://localhost:8000/homes/${editHome.id}`, 
-                    editHome
-                )
-                .then((response) => {
-                    getHomes();
+
+    const getOneHome = (id) => {
+        return axios.get(`http://localhost:8000/homes/${id}`)
+            .then((response)=>{
+                return response.data
             })
-            .catch((error) => {
-            console.error(error);
-            });
-        }
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
+
+    const zillowApi = () => {
+        // const options = {
+        //     method: 'GET',
+        //     url: 'https://zillow56.p.rapidapi.com/search',
+        //     params: {location: 'Los Angeles, ca'},
+        //     headers: {
+        //         'X-RapidAPI-Key': 'c834d0f3b7msh4555611b2487197p1f938bjsn275578de3715',
+        //         'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
+        //         }
+        //     };
+            
+        // axios.request(options).then(function (response) {
+        //     console.log(response.data.results);
+        //     setApiHomes(response.data.results)
+        // }).catch(function (error) {
+        //     console.error(error);
+        // });
+    }
+
+
+
     
-        useEffect(()=>{
-        getHomes()
-        }, [])
-    
-        useEffect(() => {
-        getHomes();
-    }, [updated]);
+    useEffect(()=>{
+    getHomes()
+    // zillowApi()
+    }, [])
+
+    useEffect(() => {
+    getHomes();
+}, [updated]);
 
 
     return(

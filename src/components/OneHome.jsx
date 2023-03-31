@@ -16,7 +16,6 @@ const OneHome = () => {
 
     //google map api key
     const key = process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAP_API_KEY
-    const google = window.google;
     const {isLoaded} = useLoadScript({googleMapsApiKey: key})
 
     // geoloation from address

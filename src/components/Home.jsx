@@ -7,18 +7,22 @@ import Create from './Create';
 
 
 const Home = () =>{
-    const [homes, setHomes] = useState([])
-    let [newListing, setNewListing] = useState([])
+    const [homes, setHomes] = useState([]);
+    const [apiHomes, setApiHomes] = useState([]);
+    let [newListing, setNewListing] = useState([]);
     const [updated, setUpdated] = useState(false);
 
     const {id} =useParams()
     
-        const getHomes = () => {
-        axios.get('https://real-ist-backend-tz4r.onrender.com/homes/all')
-        .then((response) => setHomes(response.data), 
-        (err) => console.log(err))
-        .catch((error) => console.log(error))
-        }
+    const getHomes = () => {
+    axios.get('https://real-ist-backend-tz4r.onrender.com/homes/all')
+    .then((response) => {
+        console.log(response.data);
+        setHomes(response.data)
+    }, 
+    (err) => console.log(err))
+    .catch((error) => console.log(error))
+    }
 
         const getOneHome = (id) => {
             return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
@@ -37,6 +41,33 @@ const Home = () =>{
         .then((response) => {
             getHomes();
         });
+    const getOneHome = (id) => {
+        return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
+            .then((response)=>{
+                return response.data
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
+
+    const zillowApi = () => {
+        // const options = {
+        //     method: 'GET',
+        //     url: 'https://zillow56.p.rapidapi.com/search',
+        //     params: {location: 'Los Angeles, ca'},
+        //     headers: {
+        //         'X-RapidAPI-Key': 'c834d0f3b7msh4555611b2487197p1f938bjsn275578de3715',
+        //         'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
+        //         }
+        //     };
+            
+        // axios.request(options).then(function (response) {
+        //     console.log(response.data.results);
+        //     setApiHomes(response.data.results)
+        // }).catch(function (error) {
+        //     console.error(error);
+        // });
     }
         //Delete
         const handleDelete = (event) => {
@@ -55,18 +86,41 @@ const Home = () =>{
                 .then((response) => {
                     getHomes();
             })
-            .catch((error) => {
-            console.error(error);
-            });
-        }
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
+
+    const zillowApi = () => {
+        // const options = {
+        //     method: 'GET',
+        //     url: 'https://zillow56.p.rapidapi.com/search',
+        //     params: {location: 'Los Angeles, ca'},
+        //     headers: {
+        //         'X-RapidAPI-Key': 'c834d0f3b7msh4555611b2487197p1f938bjsn275578de3715',
+        //         'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
+        //         }
+        //     };
+            
+        // axios.request(options).then(function (response) {
+        //     console.log(response.data.results);
+        //     setApiHomes(response.data.results)
+        // }).catch(function (error) {
+        //     console.error(error);
+        // });
+    }
+
+
+
     
-        useEffect(()=>{
-        getHomes()
-        }, [])
-    
-        useEffect(() => {
-        getHomes();
-    }, [updated]);
+    useEffect(()=>{
+    getHomes()
+    // zillowApi()
+    }, [])
+
+    useEffect(() => {
+    getHomes();
+}, [updated]);
 
 
     return(

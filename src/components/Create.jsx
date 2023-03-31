@@ -30,7 +30,7 @@ const Create = (props) => {
 
     const handleCreate = (newListing) => {
         axios
-        .post('http://localhost:8000/homes', newListing)
+        .post('https://real-ist-backend-tz4r.onrender.com/homes', newListing)
         .then((response) => {
             console.log(response);
         });

@@ -22,7 +22,7 @@ const Update = (props) => {
 
     useEffect(() => {
         axios
-        .get(`http://localhost:8000/homes/${id}`)
+        .get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
         .then((response) => {
             setHome(response.data);
         })

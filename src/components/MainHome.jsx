@@ -21,7 +21,7 @@ const MainHome = () => {
     }
 
     const getOneHome = (id) => {
-        return axios.get(`http://localhost:8000/homes/${id}`)
+        return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
             .then((response)=>{
                 return response.data
             })
@@ -31,7 +31,7 @@ const MainHome = () => {
         }
 
     const getHomes = () => {
-        axios.get('http://localhost:8000/homes')
+        axios.get('https://real-ist-backend-tz4r.onrender.com/homes')
         .then((response) => setHomes(response.data), 
         (err) => console.log(err))
         .catch((error) => console.log(error))

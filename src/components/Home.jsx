@@ -15,7 +15,7 @@ const Home = () =>{
     const {id} =useParams()
     
     const getHomes = () => {
-    axios.get('http://localhost:8000/homes/all')
+    axios.get('https://real-ist-backend-tz4r.onrender.com/homes/all')
     .then((response) => {
         console.log(response.data);
         setHomes(response.data)
@@ -24,10 +24,67 @@ const Home = () =>{
     .catch((error) => console.log(error))
     }
 
+        const getOneHome = (id) => {
+            return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
+                .then((response)=>{
+                    return response.data
+                })
+                .catch((error)=>{
+                    console.log(error);
+                })
+        }
+    
+        //create
+        const handleCreate = (newListing) => {
+        axios
+        .post('https://real-ist-backend-tz4r.onrender.com/homes', newListing)
+        .then((response) => {
+            getHomes();
+        });
     const getOneHome = (id) => {
-        return axios.get(`http://localhost:8000/homes/${id}`)
+        return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
             .then((response)=>{
                 return response.data
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
+
+    const zillowApi = () => {
+        // const options = {
+        //     method: 'GET',
+        //     url: 'https://zillow56.p.rapidapi.com/search',
+        //     params: {location: 'Los Angeles, ca'},
+        //     headers: {
+        //         'X-RapidAPI-Key': 'c834d0f3b7msh4555611b2487197p1f938bjsn275578de3715',
+        //         'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
+        //         }
+        //     };
+            
+        // axios.request(options).then(function (response) {
+        //     console.log(response.data.results);
+        //     setApiHomes(response.data.results)
+        // }).catch(function (error) {
+        //     console.error(error);
+        // });
+    }
+        //Delete
+        const handleDelete = (event) => {
+        axios.delete(`https://real-ist-backend-tz4r.onrender.com/homes/${event.target.value}`)
+        .then((response) =>{
+            getHomes()
+        })
+        };
+    
+        //Update
+        const handleUpdate = (editHome) => {
+        axios
+                .put(`https://real-ist-backend-tz4r.onrender.com/homes/${editHome.id}`, 
+                    editHome
+                )
+                .then((response) => {
+                    getHomes();
             })
             .catch((error)=>{
                 console.log(error);

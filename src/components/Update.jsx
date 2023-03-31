@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Update = (props) => {
     const [home, setHome] = useState({});
     const [formData, setFormData] = useState({...props.home}); 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
@@ -17,8 +18,21 @@ const Update = (props) => {
     // };
     const handleSubmit= async(event) => {
         event.preventDefault()
-        await handleChange(formData)
+        await handleUpdate(formData)
     };
+
+    const handleUpdate = (editHome) => {
+        axios
+                .put(`https://real-ist-backend-tz4r.onrender.com/homes/${editHome.id}`, 
+                    editHome
+                )
+                .then((response) => {
+                    navigate('/');
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
 
     useEffect(() => {
         axios

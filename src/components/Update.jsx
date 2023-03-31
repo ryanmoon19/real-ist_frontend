@@ -20,20 +20,22 @@ const Update = (props) => {
         await handleChange(formData)
     };
 
-    // useEffect(() => {
-    //     axios
-    //     .get(`http://localhost:8000/homes/${id}`)
-    //     .then((response) => {
-    //         setHome(response.data);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     });
-    // }, []);
+    useEffect(() => {
+        axios
+        .get(`http://localhost:8000/homes/${id}`)
+        .then((response) => {
+            setHome(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, [id]);
 
     return (
-        <div className='mt-4 mx-auto w-8/12 py-8 px-6 shadow-xl rounded-lg sm:px-10 '>
-            <img className='ml-auto mr-auto w-full h-80' src={home.image}/>
+        <div className='sm:flex justify-around h-11/12 sm:w-11/12 ml-auto mr-auto sm:mt-10'>
+            <div className='h-full sm:w-3/6 w-full'>
+                <img className='ml-auto mr-auto w-full h-80' src={home.image}/>
+            </div>
             <form className="bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10" onSubmit={handleSubmit}>
                 <label className='block text-xl font-medium text-gray-700' htmlFor="houseNum">House Number: </label>
                 <input className='w-full border border-gray-400 px-3 py-1 rounded-md shadow-lg focus:outline-none focus:border-blue-600' type="text" name="houseNum" value={formData.houseNum} onChange={handleChange} />

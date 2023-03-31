@@ -14,14 +14,14 @@ const Home = () =>{
     const {id} =useParams()
     
         const getHomes = () => {
-        axios.get('http://localhost:8000/homes/all')
+        axios.get('https://real-ist-backend-tz4r.onrender.com/homes/all')
         .then((response) => setHomes(response.data), 
         (err) => console.log(err))
         .catch((error) => console.log(error))
         }
 
         const getOneHome = (id) => {
-            return axios.get(`http://localhost:8000/homes/${id}`)
+            return axios.get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
                 .then((response)=>{
                     return response.data
                 })
@@ -33,14 +33,14 @@ const Home = () =>{
         //create
         const handleCreate = (newListing) => {
         axios
-        .post('http://localhost:8000/homes', newListing)
+        .post('https://real-ist-backend-tz4r.onrender.com/homes', newListing)
         .then((response) => {
             getHomes();
         });
     }
         //Delete
         const handleDelete = (event) => {
-        axios.delete(`http://localhost:8000/homes/${event.target.value}`)
+        axios.delete(`https://real-ist-backend-tz4r.onrender.com/homes/${event.target.value}`)
         .then((response) =>{
             getHomes()
         })
@@ -49,7 +49,7 @@ const Home = () =>{
         //Update
         const handleUpdate = (editHome) => {
         axios
-                .put(`http://localhost:8000/homes/${editHome.id}`, 
+                .put(`https://real-ist-backend-tz4r.onrender.com/homes/${editHome.id}`, 
                     editHome
                 )
                 .then((response) => {

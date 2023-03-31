@@ -42,7 +42,7 @@ const OneHome = () => {
 
     //Delete
     const handleDelete = (event) => {
-        axios.delete(`http://localhost:8000/homes/${event.target.value}`)
+        axios.delete(`https://real-ist-backend-tz4r.onrender.com/homes/${event.target.value}`)
         .then((response) =>{
             console.log(response);
             navigate('/homes')
@@ -52,7 +52,7 @@ const OneHome = () => {
     //rendering data
     useEffect(() => {
         axios
-        .get(`http://localhost:8000/homes/${id}`)
+        .get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
         .then((response) => {
             setHome(response.data);
         })

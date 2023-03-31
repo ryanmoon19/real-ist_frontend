@@ -6,7 +6,7 @@ import Create from './Create';
 
 
 
-const Home = () =>{
+const Home = () => {
     const [homes, setHomes] = useState([]);
     const [apiHomes, setApiHomes] = useState([]);
     let [newListing, setNewListing] = useState([]);
@@ -51,24 +51,9 @@ const Home = () =>{
             })
     }
 
-    const zillowApi = () => {
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://zillow56.p.rapidapi.com/search',
-        //     params: {location: 'Los Angeles, ca'},
-        //     headers: {
-        //         'X-RapidAPI-Key': 'c834d0f3b7msh4555611b2487197p1f938bjsn275578de3715',
-        //         'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
-        //         }
-        //     };
-            
-        // axios.request(options).then(function (response) {
-        //     console.log(response.data.results);
-        //     setApiHomes(response.data.results)
-        // }).catch(function (error) {
-        //     console.error(error);
-        // });
+    
     }
+    
         //Delete
         const handleDelete = (event) => {
         axios.delete(`https://real-ist-backend-tz4r.onrender.com/homes/${event.target.value}`)

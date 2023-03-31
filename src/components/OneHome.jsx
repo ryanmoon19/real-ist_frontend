@@ -84,7 +84,7 @@ const OneHome = () => {
                             <h2 className='text-2xl font-bold'>Real-ist</h2>
                         </div>
                         <div>
-                            <p className='tracking-wider mr-5'><Link to='/update' className='text-blue-500'>Edit</Link> || <button onClick={handleDelete} value={home.id} className='text-red-500'>Delete</button></p>
+                            <p className='tracking-wider mr-5'><Link to={`/update/${home.id}`} className='text-blue-500'>Edit</Link> || <button onClick={handleDelete} value={home.id} className='text-red-500'>Delete</button></p>
                         </div>
                     </div>
                     {/* listing price || bed  & bath*/}

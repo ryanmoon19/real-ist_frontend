@@ -4,9 +4,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Update = (props) => {
     const [home, setHome] = useState({});
-    const [formData, setFormData] = useState({...props.home}); 
+    const [formData, setFormData] = useState({...home}); 
     const { id } = useParams();
     const navigate = useNavigate();
+
+    // console.log(formData);
+    // console.log(home);
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
@@ -39,6 +42,7 @@ const Update = (props) => {
         .get(`https://real-ist-backend-tz4r.onrender.com/homes/${id}`)
         .then((response) => {
             setHome(response.data);
+            setFormData(response.data);
         })
         .catch((error) => {
             console.log(error);

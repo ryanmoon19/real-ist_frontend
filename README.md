@@ -9,7 +9,7 @@ Live Link: https://real-ist-frontend.onrender.com/
 HTML, JavaScript, Python
 
 ## Technologies used (Backend and Frontend): 
-Axios, PostgreSQL, Django, React, React-Router DOM, Psycog2-Binary, Google API, Tailwind CSS
+Axios, PostgreSQL, Django, React, React-Router-Dom, React-Geocode, Psycog2-Binary, Google API, Tailwind CSS
 
 ## Wireframes: 
 https://docs.google.com/document/d/1gdVDnNhtrhC0yo6LaL_wL2Jfmy4LPKhQy2B40REyUu4/edit?usp=sharing

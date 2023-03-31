@@ -1,4 +1,4 @@
-# real-ist_frontend
+# Real-ist
 
 This project is deployed on render.com
 This is a collaborative project by: Alberto, Ryan, Romina, and Larry
